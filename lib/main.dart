@@ -1,3 +1,4 @@
+import 'package:designs_and_animations_app/src/pages/headers_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,11 +12,8 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      title: "Diseños App",
+      home: HeadersPage(),
     );
   }
 }
