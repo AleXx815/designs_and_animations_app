@@ -71,3 +71,44 @@ class _HeaderInclinedPainter extends CustomPainter {
   @override
   bool shouldRepaint(_HeaderInclinedPainter oldDelegate) => true;
 }
+
+class TriangularHeader extends StatelessWidget {
+  const TriangularHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: CustomPaint(
+        painter: _TriangularHeaderPainter(),
+      ),
+    );
+  }
+}
+
+class _TriangularHeaderPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+
+    // properties
+    paint.color = Colors.pink;
+    paint.style = PaintingStyle.fill; // fill es relleno y stroke son las lineas
+    paint.strokeWidth = 3.0;
+
+    final path = Path();
+
+    // draw with path and paint
+
+    // Por defecto ya está en la coordenada 0, 0
+    // path.moveTo(0, 0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(size.width, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(_TriangularHeaderPainter oldDelegate) => true;
+}
