@@ -112,3 +112,44 @@ class _TriangularHeaderPainter extends CustomPainter {
   @override
   bool shouldRepaint(_TriangularHeaderPainter oldDelegate) => true;
 }
+
+class HeaderPico extends StatelessWidget {
+  const HeaderPico({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: CustomPaint(
+        painter: _HeaderPicoPainter(),
+      ),
+    );
+  }
+}
+
+class _HeaderPicoPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+
+    // properties
+    paint.color = Colors.pink;
+    paint.style = PaintingStyle.fill;
+    paint.strokeWidth = 3.0;
+
+    final path = Path();
+
+    // draw with path and paint
+
+    path.lineTo(0, size.height * 0.25);
+    path.lineTo(size.width * 0.5, size.height * 0.32);
+    path.lineTo(size.width, size.height * 0.25);
+    path.lineTo(size.width, 0);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(_HeaderPicoPainter oldDelegate) => true;
+}
