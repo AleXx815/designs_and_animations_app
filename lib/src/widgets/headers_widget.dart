@@ -196,3 +196,48 @@ class _CircularHeaderPainter extends CustomPainter {
   @override
   bool shouldRepaint(_CircularHeaderPainter oldDelegate) => true;
 }
+
+class WaveHeader extends StatelessWidget {
+  const WaveHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: CustomPaint(
+        painter: _WaveHeaderPainter(),
+      ),
+    );
+  }
+}
+
+class _WaveHeaderPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+
+    // properties
+    paint.color = Colors.pink;
+    paint.style = PaintingStyle.fill;
+    paint.strokeWidth = 3.0;
+
+    final path = Path();
+
+    // draw with path and paint
+
+    path.lineTo(0, size.height * 0.25);
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.35,
+        size.width * 0.5, size.height * 0.25);
+    path.quadraticBezierTo(
+        size.width * 0.75, size.height * 0.15, size.width, size.height * 0.25);
+    path.lineTo(size.width, 0);
+
+    // path.lineTo(size.width, size.height * 0.25);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(_WaveHeaderPainter oldDelegate) => true;
+}
