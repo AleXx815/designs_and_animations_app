@@ -241,3 +241,67 @@ class _WaveHeaderPainter extends CustomPainter {
   @override
   bool shouldRepaint(_WaveHeaderPainter oldDelegate) => true;
 }
+
+class WaveHeaderGradient extends StatelessWidget {
+  const WaveHeaderGradient({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: double.infinity,
+      width: double.infinity,
+      child: CustomPaint(
+        painter: _WaveHeaderGradientPainter(),
+      ),
+    );
+  }
+}
+
+class _WaveHeaderGradientPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final Rect rect = Rect.fromCircle(
+      center: const Offset(0.0, 55.0),
+      radius: 180,
+    );
+
+    const Gradient gradiente = LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: <Color>[
+          Color(0xff6D05E8),
+          Color(0xffC012FF),
+          Color(0xff6D05FA),
+        ],
+        stops: [
+          0.2,
+          0.5,
+          1.0,
+        ]);
+
+    final paint = Paint()..shader = gradiente.createShader(rect);
+
+    // properties
+    // paint.color = Colors.purple;
+    paint.style = PaintingStyle.fill;
+    paint.strokeWidth = 3.0;
+
+    final path = Path();
+
+    // draw with path and paint
+
+    path.lineTo(0, size.height * 0.25);
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.35,
+        size.width * 0.5, size.height * 0.25);
+    path.quadraticBezierTo(
+        size.width * 0.75, size.height * 0.15, size.width, size.height * 0.25);
+    path.lineTo(size.width, 0);
+
+    // path.lineTo(size.width, size.height * 0.25);
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(_WaveHeaderGradientPainter oldDelegate) => true;
+}
