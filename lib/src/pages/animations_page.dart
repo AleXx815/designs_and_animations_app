@@ -33,6 +33,8 @@ class _AnimatedSquareState extends State<AnimatedSquare>
 
   late Animation<double> moveRight;
 
+  late Animation<double> enlarge;
+
   @override
   void initState() {
     controller = AnimationController(
@@ -62,6 +64,13 @@ class _AnimatedSquareState extends State<AnimatedSquare>
       CurvedAnimation(
         parent: controller,
         curve: Curves.easeOutBack,
+      ),
+    );
+
+    enlarge = Tween(begin: 0.0, end: 2.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: Curves.easeInQuad,
       ),
     );
 
@@ -99,7 +108,10 @@ class _AnimatedSquareState extends State<AnimatedSquare>
             angle: rotation.value,
             child: Opacity(
               opacity: opacity.value,
-              child: childRectangulo,
+              child: Transform.scale(
+                scale: enlarge.value,
+                child: childRectangulo,
+              ),
             ),
           ),
         );
