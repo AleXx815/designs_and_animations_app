@@ -45,7 +45,16 @@ class _AnimatedSquareState extends State<AnimatedSquare>
       ),
     );
 
-    opacity = Tween(begin: 0.1, end: 1.0).animate(controller);
+    opacity = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: const Interval(
+          0.0,
+          0.3,
+          curve: Curves.easeInOutCubicEmphasized,
+        ),
+      ),
+    );
 
     controller.addListener(() {
       if (controller.status == AnimationStatus.completed) {
