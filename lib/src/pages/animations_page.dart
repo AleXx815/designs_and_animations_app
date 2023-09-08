@@ -22,10 +22,46 @@ class AnimatedSquare extends StatefulWidget {
   State<AnimatedSquare> createState() => _AnimatedSquareState();
 }
 
-class _AnimatedSquareState extends State<AnimatedSquare> {
+class _AnimatedSquareState extends State<AnimatedSquare>
+    with SingleTickerProviderStateMixin {
+  late AnimationController controller;
+
+  late Animation<double> rotation;
+
+  @override
+  void initState() {
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 4000),
+    );
+
+    rotation = Tween(begin: 0.0, end: 20.0).animate(controller);
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return _Rectangle();
+    // PLAY
+    controller.forward();
+
+    return AnimatedBuilder(
+      animation: controller,
+      child: _Rectangle(),
+      builder: (BuildContext context, Widget? child) {
+        return Transform.rotate(
+          angle: rotation.value,
+          child: child,
+        );
+      },
+    );
   }
 }
 
