@@ -36,7 +36,10 @@ class _AnimatedSquareState extends State<AnimatedSquare>
       duration: const Duration(milliseconds: 4000),
     );
 
-    rotation = Tween(begin: 0.0, end: 4 * math.pi).animate(controller);
+    rotation = Tween(begin: 0.0, end: 4 * math.pi).animate(CurvedAnimation(
+      parent: controller,
+      curve: Curves.easeInOutCirc,
+    ));
 
     controller.addListener(() {
       if (controller.status == AnimationStatus.completed) {
