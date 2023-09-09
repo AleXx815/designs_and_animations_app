@@ -31,6 +31,8 @@ class _AnimatedSquareState extends State<AnimatedSquare>
 
   late Animation<double> opacity;
 
+  late Animation<double> opacityOut;
+
   late Animation<double> moveRight;
 
   late Animation<double> moveLeft;
@@ -51,12 +53,23 @@ class _AnimatedSquareState extends State<AnimatedSquare>
       ),
     );
 
-    opacity = Tween(begin: 0.0, end: 1.0).animate(
+    opacity = Tween(begin: 0.1, end: 1.0).animate(
       CurvedAnimation(
         parent: controller,
         curve: const Interval(
           0.0,
-          0.3,
+          0.25,
+          curve: Curves.easeInOutCubicEmphasized,
+        ),
+      ),
+    );
+
+    opacityOut = Tween(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(
+        parent: controller,
+        curve: const Interval(
+          0.75,
+          1.0,
           curve: Curves.easeInOutCubicEmphasized,
         ),
       ),
@@ -116,7 +129,7 @@ class _AnimatedSquareState extends State<AnimatedSquare>
           child: Transform.rotate(
             angle: rotation.value,
             child: Opacity(
-              opacity: opacity.value,
+              opacity: (opacity.value - opacityOut.value),
               child: Transform.scale(
                 scale: enlarge.value,
                 child: childRectangulo,
