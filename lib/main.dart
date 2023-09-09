@@ -1,5 +1,12 @@
-import 'package:designs_and_animations_app/src/pages/animations_page.dart';
+// PRIMER CHALLENGE PARA PRACTICAR ANIMACIONES
+import 'package:designs_and_animations_app/src/challenges/animated_square_page.dart';
+
+// APRENDIENDO ANIMACIONES BÁSICAS
+// import 'package:designs_and_animations_app/src/pages/animations_page.dart';
+
+// APRENDIENDO CUSTOM PAINTER
 // import 'package:designs_and_animations_app/src/pages/headers_page.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -19,7 +26,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Diseños App",
-      home: AnimationsPage(),
+      home: AnimatedSquarePage(),
     );
   }
 }
