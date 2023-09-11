@@ -1,5 +1,8 @@
 // PRIMER CHALLENGE PARA PRACTICAR ANIMACIONES
-import 'package:designs_and_animations_app/src/challenges/animated_square_page.dart';
+// import 'package:designs_and_animations_app/src/challenges/animated_square_page.dart';
+
+// APRENDIENDO A ANIMAR BARRAS DE PROGRESO CIRCULARES
+import 'package:designs_and_animations_app/src/pages/circular_progress_page.dart';
 
 // APRENDIENDO ANIMACIONES BÁSICAS
 // import 'package:designs_and_animations_app/src/pages/animations_page.dart';
@@ -26,7 +29,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Diseños App",
-      home: AnimatedSquarePage(),
+      home: CircularProgressPage(),
     );
   }
 }
